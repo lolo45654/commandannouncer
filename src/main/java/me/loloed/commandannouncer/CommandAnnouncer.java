@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public final class CommandAnnouncer extends JavaPlugin implements Listener {
+    public static final String[] BLACKLISTED = new String[] { "msg", "w", "tell" };
 
     @Override
     public void onEnable() {
@@ -24,6 +25,9 @@ public final class CommandAnnouncer extends JavaPlugin implements Listener {
     public void onCommand(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
         String command = event.getMessage();
+        for (String s : BLACKLISTED) {
+            if (command.startsWith("/" + s)) return;
+        }
         for (Player oPlayer : Bukkit.getOnlinePlayers()) {
             oPlayer.sendMessage(Component.text(player.getName() + " has issued: " + command));
         }
@@ -32,6 +36,9 @@ public final class CommandAnnouncer extends JavaPlugin implements Listener {
     @EventHandler
     public void onCommand(ServerCommandEvent event) {
         String command = event.getCommand();
+        for (String s : BLACKLISTED) {
+            if (command.startsWith(s)) return;
+        }
         for (Player oPlayer : Bukkit.getOnlinePlayers()) {
             oPlayer.sendMessage(Component.text("Console has issued: " + command));
         }

@@ -5,8 +5,4 @@ api-version: '1.20'
 authors: [loloed]
 commands:
   announcerworking:
-    permission: announcer
-
-permissions:
-  announcer:
-    default: true
+    description: is the logger working

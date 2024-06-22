@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public final class CommandAnnouncer extends JavaPlugin implements Listener {
-    public static final String[] BLACKLISTED = new String[] { "msg", "w", "tell", "home", "tpa", "tpahere", "team", "sethome" };
+    public static final String[] BLACKLISTED = new String[] { "msg", "w", "tell", "home", "tpa", "tpahere", "team", "sethome", "minecraft:msg", "minecraft:w", "minecraft:tell" };
 
     @Override
     public void onEnable() {

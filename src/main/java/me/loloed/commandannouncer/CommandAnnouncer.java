@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public final class CommandAnnouncer extends JavaPlugin implements Listener {
-    public static final String[] BLACKLISTED = new String[] { "msg", "w", "tell" };
+    public static final String[] BLACKLISTED = new String[] { "msg", "w", "tell", "home", "tpa", "tpahere", "team", "sethome" };
 
     @Override
     public void onEnable() {
@@ -24,6 +24,7 @@ public final class CommandAnnouncer extends JavaPlugin implements Listener {
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
+        if (!player.isOp()) return;
         String command = event.getMessage();
         for (String s : BLACKLISTED) {
             if (command.startsWith("/" + s)) return;
